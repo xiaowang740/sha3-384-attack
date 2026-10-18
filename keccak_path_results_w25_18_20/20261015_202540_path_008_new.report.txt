@@ -1,0 +1,561 @@
+iota_start_round: 0
+iota_rc_start: 0
+total_weight: 63
+
+a0 (5x5 lanes, 32-bit each):
+|80000082|00000001|00000020|00000800|00000000|
+|00000000|00000000|00000000|00000000|00000000|
+|80000000|00000000|00000000|00000000|00000000|
+|00000000|00000000|00000000|00000000|00000000|
+|00008021|00000001|00000020|00008800|00000000|
+
+b0 (5x5 lanes, 32-bit each):
+|b47f4db3|38fa5e81|e24289bb|6d1569df|05abf032|
+|347f4d30|78ea5e81|e240893f|6d156bdf|05abf032|
+|347f4d30|78fa5e81|e640893f|6d1569df|45abf032|
+|347f4d74|78fa5e81|e240893f|6d5569df|05abf032|
+|347f4d30|78fa5e81|e240893f|6d1569df|05abf032|
+
+c0 (5x5 lanes, 32-bit each):
+|b47f4db2|38fa5e81|e24289bb|6d1569df|05abf032|
+|347f4d30|78ea5e81|e240893f|6d156bdf|05abf032|
+|347f4d30|78fa5e81|e640893f|6d1569df|45abf032|
+|347f4d74|78fa5e81|e240893f|6d5569df|05abf032|
+|347f4d30|78fa5e81|e240893f|6d1569df|05abf032|
+
+a1 (5x5 lanes, 32-bit each):
+|80008000|00000000|00000000|00000000|00000000|
+|00000080|00000000|00000004|00000000|00000004|
+|00000002|00000000|00000000|00000000|00000002|
+|00000000|00000000|00000000|00000000|00000008|
+|00000008|00000000|00000000|00000000|00000004|
+
+b1 (5x5 lanes, 32-bit each):
+|80000082|00000001|00000020|00000800|00000000|
+|00000000|00000000|00000000|00000000|00000000|
+|80000000|00000000|00000000|00000000|00000000|
+|00000000|00000000|00000000|00000000|00000000|
+|00008000|00000001|00000020|00000800|00000000|
+
+c1 (5x5 lanes, 32-bit each):
+|80008000|00000001|00000020|00000800|00000000|
+|00000000|00000000|00000000|00000000|00000000|
+|80000000|00000000|00000000|00000000|00000000|
+|00000000|00000000|00000000|00000000|00000000|
+|00008000|00000001|00000020|00000800|00000000|
+
+a2 (5x5 lanes, 32-bit each):
+|0000008a|00000000|00000000|00000000|00030000|
+|00000000|00400000|00000010|00000000|00000000|
+|00000000|00000000|00000000|00000800|00200000|
+|00000000|00000800|00000000|00000000|00000000|
+|00000000|00000000|00000000|00000000|00000000|
+
+b2 (5x5 lanes, 32-bit each):
+|80008000|00000000|00000000|00000000|00000000|
+|00000080|00000000|00000000|00000000|00000004|
+|00000002|00000000|00000000|00000000|00000000|
+|00000000|00000000|00000000|00000000|00000008|
+|00000008|00000000|00000000|00000000|0000000c|
+
+c2 (5x5 lanes, 32-bit each):
+|0000008a|00000000|00000000|00000000|00000000|
+|00000080|00000000|00000000|00000000|00000004|
+|00000002|00000000|00000000|00000000|00000000|
+|00000000|00000000|00000000|00000000|00000008|
+|00000008|00000000|00000000|00000000|0000000c|
+
+b3 (5x5 lanes, 32-bit each):
+|0000008a|00000000|00020000|00020000|00030000|
+|00400010|00400000|00000010|00000000|00400000|
+|00000000|00000800|00000000|00000800|00200000|
+|00000000|00000800|00000000|00000000|00000000|
+|00000000|00000000|00000000|00000000|00000000|
+
+weight details:
+transition 0: total_weight=25, active_boxes=11
+  y=0 z= 0 weight=2
+  y=0 z= 1 weight=2
+  y=0 z= 2 weight=0
+  y=0 z= 3 weight=0
+  y=0 z= 4 weight=0
+  y=0 z= 5 weight=2
+  y=0 z= 6 weight=0
+  y=0 z= 7 weight=2
+  y=0 z= 8 weight=0
+  y=0 z= 9 weight=0
+  y=0 z=10 weight=0
+  y=0 z=11 weight=2
+  y=0 z=12 weight=0
+  y=0 z=13 weight=0
+  y=0 z=14 weight=0
+  y=0 z=15 weight=0
+  y=0 z=16 weight=0
+  y=0 z=17 weight=0
+  y=0 z=18 weight=0
+  y=0 z=19 weight=0
+  y=0 z=20 weight=0
+  y=0 z=21 weight=0
+  y=0 z=22 weight=0
+  y=0 z=23 weight=0
+  y=0 z=24 weight=0
+  y=0 z=25 weight=0
+  y=0 z=26 weight=0
+  y=0 z=27 weight=0
+  y=0 z=28 weight=0
+  y=0 z=29 weight=0
+  y=0 z=30 weight=0
+  y=0 z=31 weight=2
+  y=1 z= 0 weight=0
+  y=1 z= 1 weight=0
+  y=1 z= 2 weight=0
+  y=1 z= 3 weight=0
+  y=1 z= 4 weight=0
+  y=1 z= 5 weight=0
+  y=1 z= 6 weight=0
+  y=1 z= 7 weight=0
+  y=1 z= 8 weight=0
+  y=1 z= 9 weight=0
+  y=1 z=10 weight=0
+  y=1 z=11 weight=0
+  y=1 z=12 weight=0
+  y=1 z=13 weight=0
+  y=1 z=14 weight=0
+  y=1 z=15 weight=0
+  y=1 z=16 weight=0
+  y=1 z=17 weight=0
+  y=1 z=18 weight=0
+  y=1 z=19 weight=0
+  y=1 z=20 weight=0
+  y=1 z=21 weight=0
+  y=1 z=22 weight=0
+  y=1 z=23 weight=0
+  y=1 z=24 weight=0
+  y=1 z=25 weight=0
+  y=1 z=26 weight=0
+  y=1 z=27 weight=0
+  y=1 z=28 weight=0
+  y=1 z=29 weight=0
+  y=1 z=30 weight=0
+  y=1 z=31 weight=0
+  y=2 z= 0 weight=0
+  y=2 z= 1 weight=0
+  y=2 z= 2 weight=0
+  y=2 z= 3 weight=0
+  y=2 z= 4 weight=0
+  y=2 z= 5 weight=0
+  y=2 z= 6 weight=0
+  y=2 z= 7 weight=0
+  y=2 z= 8 weight=0
+  y=2 z= 9 weight=0
+  y=2 z=10 weight=0
+  y=2 z=11 weight=0
+  y=2 z=12 weight=0
+  y=2 z=13 weight=0
+  y=2 z=14 weight=0
+  y=2 z=15 weight=0
+  y=2 z=16 weight=0
+  y=2 z=17 weight=0
+  y=2 z=18 weight=0
+  y=2 z=19 weight=0
+  y=2 z=20 weight=0
+  y=2 z=21 weight=0
+  y=2 z=22 weight=0
+  y=2 z=23 weight=0
+  y=2 z=24 weight=0
+  y=2 z=25 weight=0
+  y=2 z=26 weight=0
+  y=2 z=27 weight=0
+  y=2 z=28 weight=0
+  y=2 z=29 weight=0
+  y=2 z=30 weight=0
+  y=2 z=31 weight=2
+  y=3 z= 0 weight=0
+  y=3 z= 1 weight=0
+  y=3 z= 2 weight=0
+  y=3 z= 3 weight=0
+  y=3 z= 4 weight=0
+  y=3 z= 5 weight=0
+  y=3 z= 6 weight=0
+  y=3 z= 7 weight=0
+  y=3 z= 8 weight=0
+  y=3 z= 9 weight=0
+  y=3 z=10 weight=0
+  y=3 z=11 weight=0
+  y=3 z=12 weight=0
+  y=3 z=13 weight=0
+  y=3 z=14 weight=0
+  y=3 z=15 weight=0
+  y=3 z=16 weight=0
+  y=3 z=17 weight=0
+  y=3 z=18 weight=0
+  y=3 z=19 weight=0
+  y=3 z=20 weight=0
+  y=3 z=21 weight=0
+  y=3 z=22 weight=0
+  y=3 z=23 weight=0
+  y=3 z=24 weight=0
+  y=3 z=25 weight=0
+  y=3 z=26 weight=0
+  y=3 z=27 weight=0
+  y=3 z=28 weight=0
+  y=3 z=29 weight=0
+  y=3 z=30 weight=0
+  y=3 z=31 weight=0
+  y=4 z= 0 weight=3
+  y=4 z= 1 weight=0
+  y=4 z= 2 weight=0
+  y=4 z= 3 weight=0
+  y=4 z= 4 weight=0
+  y=4 z= 5 weight=3
+  y=4 z= 6 weight=0
+  y=4 z= 7 weight=0
+  y=4 z= 8 weight=0
+  y=4 z= 9 weight=0
+  y=4 z=10 weight=0
+  y=4 z=11 weight=2
+  y=4 z=12 weight=0
+  y=4 z=13 weight=0
+  y=4 z=14 weight=0
+  y=4 z=15 weight=3
+  y=4 z=16 weight=0
+  y=4 z=17 weight=0
+  y=4 z=18 weight=0
+  y=4 z=19 weight=0
+  y=4 z=20 weight=0
+  y=4 z=21 weight=0
+  y=4 z=22 weight=0
+  y=4 z=23 weight=0
+  y=4 z=24 weight=0
+  y=4 z=25 weight=0
+  y=4 z=26 weight=0
+  y=4 z=27 weight=0
+  y=4 z=28 weight=0
+  y=4 z=29 weight=0
+  y=4 z=30 weight=0
+  y=4 z=31 weight=0
+
+transition 1: total_weight=18, active_boxes=8
+  y=0 z= 0 weight=0
+  y=0 z= 1 weight=0
+  y=0 z= 2 weight=0
+  y=0 z= 3 weight=0
+  y=0 z= 4 weight=0
+  y=0 z= 5 weight=0
+  y=0 z= 6 weight=0
+  y=0 z= 7 weight=0
+  y=0 z= 8 weight=0
+  y=0 z= 9 weight=0
+  y=0 z=10 weight=0
+  y=0 z=11 weight=0
+  y=0 z=12 weight=0
+  y=0 z=13 weight=0
+  y=0 z=14 weight=0
+  y=0 z=15 weight=2
+  y=0 z=16 weight=0
+  y=0 z=17 weight=0
+  y=0 z=18 weight=0
+  y=0 z=19 weight=0
+  y=0 z=20 weight=0
+  y=0 z=21 weight=0
+  y=0 z=22 weight=0
+  y=0 z=23 weight=0
+  y=0 z=24 weight=0
+  y=0 z=25 weight=0
+  y=0 z=26 weight=0
+  y=0 z=27 weight=0
+  y=0 z=28 weight=0
+  y=0 z=29 weight=0
+  y=0 z=30 weight=0
+  y=0 z=31 weight=2
+  y=1 z= 0 weight=0
+  y=1 z= 1 weight=0
+  y=1 z= 2 weight=3
+  y=1 z= 3 weight=0
+  y=1 z= 4 weight=0
+  y=1 z= 5 weight=0
+  y=1 z= 6 weight=0
+  y=1 z= 7 weight=2
+  y=1 z= 8 weight=0
+  y=1 z= 9 weight=0
+  y=1 z=10 weight=0
+  y=1 z=11 weight=0
+  y=1 z=12 weight=0
+  y=1 z=13 weight=0
+  y=1 z=14 weight=0
+  y=1 z=15 weight=0
+  y=1 z=16 weight=0
+  y=1 z=17 weight=0
+  y=1 z=18 weight=0
+  y=1 z=19 weight=0
+  y=1 z=20 weight=0
+  y=1 z=21 weight=0
+  y=1 z=22 weight=0
+  y=1 z=23 weight=0
+  y=1 z=24 weight=0
+  y=1 z=25 weight=0
+  y=1 z=26 weight=0
+  y=1 z=27 weight=0
+  y=1 z=28 weight=0
+  y=1 z=29 weight=0
+  y=1 z=30 weight=0
+  y=1 z=31 weight=0
+  y=2 z= 0 weight=0
+  y=2 z= 1 weight=3
+  y=2 z= 2 weight=0
+  y=2 z= 3 weight=0
+  y=2 z= 4 weight=0
+  y=2 z= 5 weight=0
+  y=2 z= 6 weight=0
+  y=2 z= 7 weight=0
+  y=2 z= 8 weight=0
+  y=2 z= 9 weight=0
+  y=2 z=10 weight=0
+  y=2 z=11 weight=0
+  y=2 z=12 weight=0
+  y=2 z=13 weight=0
+  y=2 z=14 weight=0
+  y=2 z=15 weight=0
+  y=2 z=16 weight=0
+  y=2 z=17 weight=0
+  y=2 z=18 weight=0
+  y=2 z=19 weight=0
+  y=2 z=20 weight=0
+  y=2 z=21 weight=0
+  y=2 z=22 weight=0
+  y=2 z=23 weight=0
+  y=2 z=24 weight=0
+  y=2 z=25 weight=0
+  y=2 z=26 weight=0
+  y=2 z=27 weight=0
+  y=2 z=28 weight=0
+  y=2 z=29 weight=0
+  y=2 z=30 weight=0
+  y=2 z=31 weight=0
+  y=3 z= 0 weight=0
+  y=3 z= 1 weight=0
+  y=3 z= 2 weight=0
+  y=3 z= 3 weight=2
+  y=3 z= 4 weight=0
+  y=3 z= 5 weight=0
+  y=3 z= 6 weight=0
+  y=3 z= 7 weight=0
+  y=3 z= 8 weight=0
+  y=3 z= 9 weight=0
+  y=3 z=10 weight=0
+  y=3 z=11 weight=0
+  y=3 z=12 weight=0
+  y=3 z=13 weight=0
+  y=3 z=14 weight=0
+  y=3 z=15 weight=0
+  y=3 z=16 weight=0
+  y=3 z=17 weight=0
+  y=3 z=18 weight=0
+  y=3 z=19 weight=0
+  y=3 z=20 weight=0
+  y=3 z=21 weight=0
+  y=3 z=22 weight=0
+  y=3 z=23 weight=0
+  y=3 z=24 weight=0
+  y=3 z=25 weight=0
+  y=3 z=26 weight=0
+  y=3 z=27 weight=0
+  y=3 z=28 weight=0
+  y=3 z=29 weight=0
+  y=3 z=30 weight=0
+  y=3 z=31 weight=0
+  y=4 z= 0 weight=0
+  y=4 z= 1 weight=0
+  y=4 z= 2 weight=2
+  y=4 z= 3 weight=2
+  y=4 z= 4 weight=0
+  y=4 z= 5 weight=0
+  y=4 z= 6 weight=0
+  y=4 z= 7 weight=0
+  y=4 z= 8 weight=0
+  y=4 z= 9 weight=0
+  y=4 z=10 weight=0
+  y=4 z=11 weight=0
+  y=4 z=12 weight=0
+  y=4 z=13 weight=0
+  y=4 z=14 weight=0
+  y=4 z=15 weight=0
+  y=4 z=16 weight=0
+  y=4 z=17 weight=0
+  y=4 z=18 weight=0
+  y=4 z=19 weight=0
+  y=4 z=20 weight=0
+  y=4 z=21 weight=0
+  y=4 z=22 weight=0
+  y=4 z=23 weight=0
+  y=4 z=24 weight=0
+  y=4 z=25 weight=0
+  y=4 z=26 weight=0
+  y=4 z=27 weight=0
+  y=4 z=28 weight=0
+  y=4 z=29 weight=0
+  y=4 z=30 weight=0
+  y=4 z=31 weight=0
+
+transition 2: total_weight=20, active_boxes=10
+  y=0 z= 0 weight=0
+  y=0 z= 1 weight=2
+  y=0 z= 2 weight=0
+  y=0 z= 3 weight=2
+  y=0 z= 4 weight=0
+  y=0 z= 5 weight=0
+  y=0 z= 6 weight=0
+  y=0 z= 7 weight=2
+  y=0 z= 8 weight=0
+  y=0 z= 9 weight=0
+  y=0 z=10 weight=0
+  y=0 z=11 weight=0
+  y=0 z=12 weight=0
+  y=0 z=13 weight=0
+  y=0 z=14 weight=0
+  y=0 z=15 weight=0
+  y=0 z=16 weight=2
+  y=0 z=17 weight=2
+  y=0 z=18 weight=0
+  y=0 z=19 weight=0
+  y=0 z=20 weight=0
+  y=0 z=21 weight=0
+  y=0 z=22 weight=0
+  y=0 z=23 weight=0
+  y=0 z=24 weight=0
+  y=0 z=25 weight=0
+  y=0 z=26 weight=0
+  y=0 z=27 weight=0
+  y=0 z=28 weight=0
+  y=0 z=29 weight=0
+  y=0 z=30 weight=0
+  y=0 z=31 weight=0
+  y=1 z= 0 weight=0
+  y=1 z= 1 weight=0
+  y=1 z= 2 weight=0
+  y=1 z= 3 weight=0
+  y=1 z= 4 weight=2
+  y=1 z= 5 weight=0
+  y=1 z= 6 weight=0
+  y=1 z= 7 weight=0
+  y=1 z= 8 weight=0
+  y=1 z= 9 weight=0
+  y=1 z=10 weight=0
+  y=1 z=11 weight=0
+  y=1 z=12 weight=0
+  y=1 z=13 weight=0
+  y=1 z=14 weight=0
+  y=1 z=15 weight=0
+  y=1 z=16 weight=0
+  y=1 z=17 weight=0
+  y=1 z=18 weight=0
+  y=1 z=19 weight=0
+  y=1 z=20 weight=0
+  y=1 z=21 weight=0
+  y=1 z=22 weight=2
+  y=1 z=23 weight=0
+  y=1 z=24 weight=0
+  y=1 z=25 weight=0
+  y=1 z=26 weight=0
+  y=1 z=27 weight=0
+  y=1 z=28 weight=0
+  y=1 z=29 weight=0
+  y=1 z=30 weight=0
+  y=1 z=31 weight=0
+  y=2 z= 0 weight=0
+  y=2 z= 1 weight=0
+  y=2 z= 2 weight=0
+  y=2 z= 3 weight=0
+  y=2 z= 4 weight=0
+  y=2 z= 5 weight=0
+  y=2 z= 6 weight=0
+  y=2 z= 7 weight=0
+  y=2 z= 8 weight=0
+  y=2 z= 9 weight=0
+  y=2 z=10 weight=0
+  y=2 z=11 weight=2
+  y=2 z=12 weight=0
+  y=2 z=13 weight=0
+  y=2 z=14 weight=0
+  y=2 z=15 weight=0
+  y=2 z=16 weight=0
+  y=2 z=17 weight=0
+  y=2 z=18 weight=0
+  y=2 z=19 weight=0
+  y=2 z=20 weight=0
+  y=2 z=21 weight=2
+  y=2 z=22 weight=0
+  y=2 z=23 weight=0
+  y=2 z=24 weight=0
+  y=2 z=25 weight=0
+  y=2 z=26 weight=0
+  y=2 z=27 weight=0
+  y=2 z=28 weight=0
+  y=2 z=29 weight=0
+  y=2 z=30 weight=0
+  y=2 z=31 weight=0
+  y=3 z= 0 weight=0
+  y=3 z= 1 weight=0
+  y=3 z= 2 weight=0
+  y=3 z= 3 weight=0
+  y=3 z= 4 weight=0
+  y=3 z= 5 weight=0
+  y=3 z= 6 weight=0
+  y=3 z= 7 weight=0
+  y=3 z= 8 weight=0
+  y=3 z= 9 weight=0
+  y=3 z=10 weight=0
+  y=3 z=11 weight=2
+  y=3 z=12 weight=0
+  y=3 z=13 weight=0
+  y=3 z=14 weight=0
+  y=3 z=15 weight=0
+  y=3 z=16 weight=0
+  y=3 z=17 weight=0
+  y=3 z=18 weight=0
+  y=3 z=19 weight=0
+  y=3 z=20 weight=0
+  y=3 z=21 weight=0
+  y=3 z=22 weight=0
+  y=3 z=23 weight=0
+  y=3 z=24 weight=0
+  y=3 z=25 weight=0
+  y=3 z=26 weight=0
+  y=3 z=27 weight=0
+  y=3 z=28 weight=0
+  y=3 z=29 weight=0
+  y=3 z=30 weight=0
+  y=3 z=31 weight=0
+  y=4 z= 0 weight=0
+  y=4 z= 1 weight=0
+  y=4 z= 2 weight=0
+  y=4 z= 3 weight=0
+  y=4 z= 4 weight=0
+  y=4 z= 5 weight=0
+  y=4 z= 6 weight=0
+  y=4 z= 7 weight=0
+  y=4 z= 8 weight=0
+  y=4 z= 9 weight=0
+  y=4 z=10 weight=0
+  y=4 z=11 weight=0
+  y=4 z=12 weight=0
+  y=4 z=13 weight=0
+  y=4 z=14 weight=0
+  y=4 z=15 weight=0
+  y=4 z=16 weight=0
+  y=4 z=17 weight=0
+  y=4 z=18 weight=0
+  y=4 z=19 weight=0
+  y=4 z=20 weight=0
+  y=4 z=21 weight=0
+  y=4 z=22 weight=0
+  y=4 z=23 weight=0
+  y=4 z=24 weight=0
+  y=4 z=25 weight=0
+  y=4 z=26 weight=0
+  y=4 z=27 weight=0
+  y=4 z=28 weight=0
+  y=4 z=29 weight=0
+  y=4 z=30 weight=0
+  y=4 z=31 weight=0
+
