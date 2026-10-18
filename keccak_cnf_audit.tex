@@ -1,0 +1,252 @@
+\documentclass[UTF8,a4paper]{ctexart}
+\usepackage{amsmath,amssymb,booktabs,geometry}
+\geometry{margin=2cm}
+\title{Keccak 差分路径的 DDT--CNF 约束构造详解}
+\author{}
+\date{\today}
+\begin{document}
+\maketitle
+
+\section{模型概述}
+当前 DDT 版本由 \texttt{keccak\_ddt\_path\_sat.py} 生成，且起始轮固定为第 0 轮（生成时加入单元子句 \(q_0\)）。每轮路径边界使用周期 32 代表变量 \(b_r\)，线性层先从 \(b_r\) 计算输入差分 \(a_{r+1}\)，随后对每个 Chi 盒的 5 位输入差分 \(\alpha\) 和输出差分 \(\beta\) 查差分分布表（DDT）。若 \(\mathrm{DDT}[\alpha,\beta]=0\)，CNF 直接禁止该差分对；若非零，则把局部重量位绑定到对应的 DDT 重量。每个转移的所有局部重量再由顺序计数器限制在给定上限内。
+
+本模型有四个代表状态 \(b_0,b_1,b_2,b_3\)，因此有三个 Chi 转移。每个代表有 \(25\times32=800\) 位。固定一个 \((y,z)\) 后，把五个 \(x\) lane 对应的位组成一个 5 位 Chi 盒；故每个转移共有 \(5\times32=160\) 个 DDT 盒。
+
+\section{起始轮和变量构建顺序}
+\subsection{当前搜索的起始轮}
+当前运行脚本默认使用
+\[
+\texttt{StartRound}=0,
+\]
+因此生成器调用
+\texttt{keccak\_ddt\_path\_sat.py --start-round 0}，并加入单元子句
+\[
+(q_0).
+\]
+这表示搜索窗口从 Keccak 的第 0 轮 Iota 开始。虽然仍然建立了全部轮选择变量 \(q_0,\ldots,q_{20}\) 以及 exactly-one 约束，但 \((q_0)\) 使模型只能取
+\[
+q_0=1,\qquad q_1=\cdots=q_{20}=0.
+\]
+所以当前不是在 21 个起始轮中自由搜索，而是固定搜索第 0 轮窗口。若命令行使用 \texttt{-StartRound r}，则同理固定第 \(r\) 轮；本项目的默认脚本不使用任意轮模式。
+
+\subsection{变量分配的先后顺序}
+变量编号由 \texttt{Cnf.var()} 按调用顺序递增。编号的精确数值不由数学公式单独决定，而由生成器执行顺序决定。构建顺序如下：
+\begin{enumerate}
+\item 先计算 \(\theta\rho\pi\) 的 800 行线性矩阵；这一步只在 Python 内计算，不分配 SAT 变量。
+\item 分配 21 个轮选择变量 \(q_0,\ldots,q_{20}\)。
+\item 分配四组边界变量 \(b_0,b_1,b_2,b_3\)，每组 800 个，因此每个 \(b_r\) 连续占据 800 个编号。
+\item 加入 \(b_0\) 非零的大子句，并开始三次转移循环。
+\item 对第 \(r\) 次转移，先分配 800 个下一边界变量 \(a_{r+1}\)。
+\item 在 \texttt{add\_iota\_linear} 中，对 800 个位置依次分配 Iota 选择辅助变量和 XOR 输出变量，再为每个线性矩阵行分配 XOR 链辅助变量，并把链末端等同于对应的 \(a_{r+1}\)。
+\item 在 DDT Chi 约束中，对每个 \((y,z)\) 盒分配三个重量变量 \((w_0,w_1,w_2)\)，再加入 1024 个输入/输出差分组合的 DDT 子句。
+\item 收集该转移 160 个盒的重量贡献，最后分配该转移顺序计数器的辅助变量并加入 \(W_r\le K\)。
+\end{enumerate}
+
+\subsection{三次转移的变量关系}
+固定起始轮 0 后，路径关系为
+\[
+b_0\xrightarrow{\text{Iota 第 0 轮}+\theta\rho\pi}a_1
+\xrightarrow{\text{Chi DDT}}b_1
+\xrightarrow{\text{Iota 第 1 轮}+\theta\rho\pi}a_2
+\xrightarrow{\text{Chi DDT}}b_2
+\xrightarrow{\text{Iota 第 2 轮}+\theta\rho\pi}a_3
+\xrightarrow{\text{Chi DDT}}b_3.
+\]
+这里的 \(b_0\) 是搜索边界，不是第 0 轮输入状态；按照程序注释，它表示第一个 Chi 输出边界。第一条线性转移使用 \(RC[0]\)，第二条使用 \(RC[1]\)，第三条使用 \(RC[2]\)。因此四个边界覆盖三个连续的 Chi 差分转移，起点固定在第 0 轮对应的 Iota 常量选择。
+
+\subsection{代表位到 Chi 盒变量}
+对转移 \(r\) 的每个 \((y,z)\)，输入差分的五个 SAT 变量为
+\[
+\alpha_x=a_{r+1,5x+y,z},\quad x=0,1,2,3,4,
+\]
+输出差分的五个 SAT 变量为
+\[
+\beta_x=b_{r+1,5x+y,z}.
+\]
+这五个输入变量和五个输出变量共同决定一个 DDT 表项。每个 \((y,z)\) 独立建立一套 DDT 禁止和重量绑定子句；\(y\) 有 5 个取值，\(z\) 有 32 个取值，所以每个转移有 160 套局部约束。
+
+\section{CNF 和变量约定}
+CNF 是子句的合取，子句是文字的析取。DIMACS 中正整数是正文字，负整数表示该变量的否定，子句以 0 结尾。\texttt{Cnf.var()} 分配新布尔变量，\texttt{clause(...)} 添加一个子句。
+
+全状态的索引约定为
+\[
+I(x,y,z)=(5x+y)\cdot64+z,
+\quad 0\le x,y<5,\quad0\le z<64.
+\]
+周期 32 代表位索引为
+\[
+R(\ell,z)=32\ell+z,\quad \ell=5x+y,\quad0\le z<32.
+\]
+其中 \(a_r,b_r\) 各含 800 个 SAT 变量。新生成的重量元数据中，\texttt{weight\_bits} 按低位到高位排列为 \([w_0,w_1,w_2]\)。
+
+\section{通用 CNF 编码}
+\subsection{相等和常量}
+等式 \(u=v\) 等价于
+\[
+(\neg u\lor v)\land(u\lor\neg v).
+\]
+固定 \(u=0\) 加单子句 \((\neg u)\)，固定 \(u=1\) 加单子句 \((u)\)。
+
+\subsection{XOR}
+对 \(t=x\oplus y\)，完整 CNF 为
+\[
+\begin{split}
+&(x\lor y\lor\neg t)\land(x\lor\neg y\lor t)\\
+&\land(\neg x\lor y\lor t)\land(\neg x\lor\neg y\lor\neg t).
+\end{split}
+\]
+四个子句分别排除不符合 XOR 真值表的赋值。多输入 XOR 用辅助变量链拆成二输入 XOR；例如 \(a=b\oplus c\oplus d\)，分配 \(h\)，编码 \(h=b\oplus c\) 和 \(a=h\oplus d\)，合计八个三文字子句。
+
+\section{轮选择、Iota 和线性层}
+\subsection{Exactly-one 轮选择}
+变量 \(q_0,\ldots,q_{20}\) 表示起始轮选择。至少选一个的子句为
+\[
+(q_0\lor q_1\lor\cdots\lor q_{20}),
+\]
+对每对 \(i<j\) 加入 \((\neg q_i\lor\neg q_j)\)，保证至多选一个。固定起始轮 \(r\) 时再加入 \((q_r)\)。
+
+\subsection{Iota 和线性层}
+对每个代表位，Iota 选择位 \(s_{\ell,z}\) 是那些使对应轮常量位为 1 的 \(q_i\) 的析取。用 \(s\leftrightarrow\bigvee_{i\in I}q_i\) 编码：加入 \((\neg s\lor q_i)\)（对每个 \(i\in I\)）和 \((\neg q_i\lor s)\)（对每个 \(i\in I\)）；若 \(I\) 为空则加入 \((\neg s)\)。之后
+\[
+m_{\ell,z}=b_{r,\ell,z}\oplus s_{\ell,z}.
+\]
+
+\(\theta\) 线性变换为
+\[
+C[x,z]=\bigoplus_{y=0}^4 A[x,y,z],\qquad
+D[x,z]=C[x-1,z]\oplus C[x+1,z-1],
+\]
+\[
+A_\theta[x,y,z]=A[x,y,z]\oplus D[x,z],
+\]
+其中 lane 和 bit 下标分别模 5、模 64。随后 Rho/Pi 将位 \((x,y,z)\) 移到
+\[
+(y,\;2x+3y\bmod5,\;z+r[x,y]\bmod64).
+\]
+程序逐个变换 800 个输入基向量，得到线性矩阵稀疏行 \(R_j\)。第 \(j\) 个输出位满足
+\[
+a_{r+1,j}=\bigoplus_{i\in R_j}m_i.
+\]
+每行用 XOR 辅助链转成四子句 XOR 约束，因此整个关系是 \(a_{r+1}=L(b_r\oplus s_r)\)。
+
+\section{Chi 的 DDT 约束}
+\subsection{5 位 Chi 和 DDT 定义}
+单个 Chi 盒的 5 位函数为
+\[
+\chi(u)_x=u_x\oplus\bigl((1\oplus u_{x+1})\land u_{x+2}\bigr),
+\quad x\pmod5.
+\]
+对输入差分 \(\alpha\in\{0,1\}^5\) 和输出差分 \(\beta\in\{0,1\}^5\)，差分分布表为
+\[
+\mathrm{DDT}[\alpha,\beta]
+=\#\{u\in\{0,1\}^5:\chi(u)\oplus\chi(u\oplus\alpha)=\beta\}.
+\]
+若该数为 0，则不存在能实现这组差分的输入；若大于 0，则该差分对可达。
+
+对每个 \((y,z)\)，程序取
+\[
+\alpha_x=a_{r+1,\,5x+y,\,z},\qquad
+\beta_x=b_{r+1,\,5x+y,\,z},\quad x=0,\ldots,4.
+\]
+输入和输出分别是五个 Boolean SAT 变量组成的 5 位字。每个转移有 160 个这样的盒。
+
+\subsection{禁止 DDT 为零的组合}
+对一个具体差分对 \((\alpha,\beta)\)，定义“不匹配文字”
+\[
+M(v,c)=\begin{cases}v,&c=0,\\\neg v,&c=1.\end{cases}
+\]
+它在变量值恰好等于常量 \(c\) 时为假。因此组合 \((\alpha,\beta)\) 的阻塞子句为
+\[
+C_{\alpha,\beta}=\bigvee_{x=0}^4M(\alpha_x,\alpha_x^{\rm const})
+\;\lor\;
+\bigvee_{x=0}^4M(\beta_x,\beta_x^{\rm const}).
+\]
+这里 \(\alpha_x,\beta_x\) 左侧表示 SAT 变量，带 \({\rm const}\) 的量表示被枚举的常量比特。该子句仅在变量恰好取值为这一组 \((\alpha,\beta)\) 时为假。
+
+若 \(\mathrm{DDT}[\alpha,\beta]=0\)，就加入 \(C_{\alpha,\beta}\)，从而精确禁止该输入/输出差分组合。对于一个盒，程序枚举全部 \(32\times32=1024\) 个组合。
+
+\subsection{可达差分对绑定重量}
+令局部重量为
+\[
+w(\alpha,\beta)=-\log_2\left(\frac{\mathrm{DDT}[\alpha,\beta]}{32}\right)
+=5-\log_2\mathrm{DDT}[\alpha,\beta].
+\]
+本 Chi 函数的非零 DDT 值经程序计算为 \(2,4,8,32\)，对应重量分别为 \(4,3,2,0\)；值 16 不出现，所以重量 1 在该表中不会被选中。
+
+每盒有三个重量位，数值解释为
+\[
+w=4w_2+2w_1+w_0,
+\]
+元数据按 LSB-first 顺序保存 \([w_0,w_1,w_2]\)。允许的实际编码是
+\[
+000\to0,\quad010\to2,\quad011\to3,\quad100\to4.
+\]
+对每个非零 DDT 项，若其重量三位为 \((c_2,c_1,c_0)\)，分别加入
+\[
+C_{\alpha,\beta}\lor(w_2\text{ 若 }c_2=1\text{，否则 }\neg w_2),
+\]
+并对 \(w_1,w_0\) 同样处理。这是蕴含
+\[
+(\alpha,\beta)=(\alpha^*,\beta^*)\quad\Longrightarrow\quad
+(w_2,w_1,w_0)=(c_2,c_1,c_0)
+\]
+的 CNF：差分对不匹配时阻塞部分使子句为真；精确匹配时，子句强制对应重量位。由于每种实际变量赋值只匹配一个差分对，所以重量被唯一确定。
+
+为完整排除 5、6、7 这三个不可能的三位重量编码，还加入
+\[
+(w_2\lor w_1\lor\neg w_0),\quad
+(\neg w_2\lor w_1\lor\neg w_0),
+\]
+\[
+(\neg w_2\lor\neg w_1\lor w_0),\quad
+(\neg w_2\lor\neg w_1\lor\neg w_0).
+\]
+每个子句只在对应非法编码时为假。
+
+\section{每个转移的重量上限}
+一个转移包含 160 个 Chi 盒。若盒 \(j\) 的重量位是 \((w_{2,j},w_{1,j},w_{0,j})\)，则
+\[
+W_r=\sum_{j=0}^{159}(4w_{2,j}+2w_{1,j}+w_{0,j}).
+\]
+程序把整数和改写成基数计数：把每个 \(w_2\) 重复四次、每个 \(w_1\) 重复两次、每个 \(w_0\) 放一次，形成文字序列 \(X=(x_0,\ldots,x_{N-1})\)。于是 \(W_r=\sum_i x_i\)。这里重复出现的是同一个 Boolean 变量，表示它对数值和贡献多份。
+
+顺序计数器辅助变量 \(s_{i,j}\) 表示序列前缀 \(x_0,\ldots,x_i\) 中至少有 \(j\) 个真值。核心递推子句为
+\[
+(\neg x_i\lor s_{i,1}),\qquad
+(\neg s_{i-1,j}\lor s_{i,j}),
+\]
+\[
+(\neg x_i\lor\neg s_{i-1,j-1}\lor s_{i,j}).
+\]
+第一条把当前真输入计入至少一个；第二条传播前缀已达到的计数；第三条把当前输入与前缀计数合并。为限制 \(W_r\le K\)，加入溢出子句
+\[
+(\neg x_i\lor\neg s_{i-1,K}),
+\]
+并对最后一个输入加入相应的末端溢出子句。这样前缀已有 \(K\) 个真值时，不允许再有一个真输入。三个转移各自建立独立计数器，故约束是
+\[
+W_0\le K,\qquad W_1\le K,\qquad W_2\le K.
+\]
+生成命令中的 \texttt{--limit 50} 会令 \(K=50\)。
+
+\section{一个完整的局部例子}
+假设某个 \((y,z)\) 盒的 SAT 输入变量正好赋值为 \(\alpha=00000\)，输出变量为 \(\beta=00000\)。此时
+\[
+\mathrm{DDT}[00000,00000]=32,
+\qquad w=-\log_2(32/32)=0,
+\]
+所以重量位被强制为 \((w_2,w_1,w_0)=000\)。如果同一输入差分配一个 DDT 为零的输出差分，例如实际表中任一零项 \(\beta^*\)，其 10 文字阻塞子句在 \((00000,\beta^*)\) 赋值下所有文字均为假，因此 SAT 不允许该差分对。
+
+\section{路径枚举}
+找到一个 SAT 模型后，枚举脚本对所有路径边界变量 \(b_0,b_1,b_2,b_3\) 加 blocking clause。若当前赋值为 \(p_i=\gamma_i\)，则子句取
+\[
+\bigvee_i\begin{cases}\neg p_i,&\gamma_i=1,\\p_i,&\gamma_i=0.\end{cases}
+\]
+它恰在已找到的路径赋值下为假，因此排除该路径，同时不限制辅助变量可取的其它值。重复求解可得到不同路径。
+
+\section{实现和语义边界}
+当前 DDT 生成器直接把 DDT 约束施加在周期 32 的代表差分 \(a,b\) 上，每个 \((y,z)\) 使用一个 5 位盒。原先通过两个 64 位切片的具体状态见证来投影到代表差分的真值表编码已不再由该生成器使用。因此，这份 CNF 精确表达的是“代表位上的 DDT 路径模型”。如果研究目标要求严格等价于完整 64 位状态差分经周期商空间投影后的 Chi 可达关系，需要单独证明该投影等价；直接对代表位查 DDT 本身并不自动给出该证明。
+
+\section{约束类型总结}
+CNF 包含：轮选择 exactly-one 子句、Iota 选择等价子句、XOR 四子句和多输入 XOR 链、线性层矩阵方程、DDT 零项的 10 文字阻塞子句、DDT 非零项触发的重量位蕴含子句、非法重量编码禁止子句、每转移顺序计数器上限子句，以及用于多路径枚举的 blocking clause。权重变量由被 SAT 选择的差分对唯一决定，计数器在求解时直接限制重量和。
+
+\end{document}
