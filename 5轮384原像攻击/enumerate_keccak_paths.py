@@ -52,7 +52,8 @@ def main():
     ap=argparse.ArgumentParser()
     ap.add_argument('--solver',required=True); ap.add_argument('--cnf',required=True)
     ap.add_argument('--weights',required=True); ap.add_argument('--outdir',required=True)
-    ap.add_argument('--count',type=int,default=10); ap.add_argument('--max-transition-weight',type=int,default=30)
+    ap.add_argument('--count',type=int,default=10); ap.add_argument('--max-transition-weight',type=int,default=None)
+    ap.add_argument('--max-total-weight',type=int,default=None)
     ap.add_argument('--combined',default='all_paths.jsonl')
     ap.add_argument('--run-tag',default=None)
     ap.add_argument('--fresh',action='store_true',
@@ -86,7 +87,15 @@ def main():
             modelpath=out/f'{tag}_model_{output_idx:03d}.txt'; modelpath.write_text(r.stdout+r.stderr)
             path=data
             pathout=out/f'{tag}_path_{output_idx:03d}.json'
-            subprocess.run([sys.executable, str(Path(__file__).with_name('decode_keccak_path.py')),str(modelpath),'--weights',str(a.weights),'--out',str(pathout),'--max-transition-weight',str(a.max_transition_weight)],check=True)
+            decode_args = [
+                sys.executable, str(Path(__file__).with_name('decode_keccak_path.py')),
+                str(modelpath), '--weights', str(a.weights), '--out', str(pathout),
+            ]
+            if a.max_transition_weight is not None:
+                decode_args += ['--max-transition-weight', str(a.max_transition_weight)]
+            if a.max_total_weight is not None:
+                decode_args += ['--max-total-weight', str(a.max_total_weight)]
+            subprocess.run(decode_args, check=True)
             decoded=json.loads(pathout.read_text())
             with combined_path.open('a',encoding='utf-8') as stream:
                 stream.write(json.dumps({'index':output_idx,**decoded},ensure_ascii=False)+'\n')

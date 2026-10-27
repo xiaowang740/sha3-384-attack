@@ -72,6 +72,7 @@ def main():
     parser.add_argument("--weights", required=True)
     parser.add_argument("--out", required=True)
     parser.add_argument("--max-transition-weight", type=int, default=None)
+    parser.add_argument("--max-total-weight", type=int, default=None)
     args = parser.parse_args()
 
     model = read_model(args.model)
@@ -105,6 +106,10 @@ def main():
             )
     path["transitions"] = transitions
     path["total_weight"] = total
+    if args.max_total_weight is not None and total > args.max_total_weight:
+        raise SystemExit(
+            f"路径不满足总重量限制（上限 {args.max_total_weight}）：total={total}"
+        )
     if "total_weight_bits" in data:
         path["total_weight_bits_lsb_first"] = [
             int(model.get(var, False)) for var in data["total_weight_bits"]

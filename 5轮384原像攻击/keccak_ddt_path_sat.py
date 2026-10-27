@@ -15,7 +15,8 @@ RC = (
     0x8000000000008080, 0x0000000080000001, 0x8000000080008008,
 )
 RC32 = tuple((rc & 0xffffffff) ^ (rc >> 32) for rc in RC)
-TRANSITION_WEIGHT_LIMITS = (20, 20, 20)
+TRANSITION_WEIGHT_LIMITS = (25, 20, 20)
+TOTAL_WEIGHT_LIMIT = 65
 IOTA_RC_START = 1
 ROT = ((0,36,3,41,18),(1,44,10,45,2),(62,6,43,15,61),
        (28,55,25,21,56),(27,20,39,8,14))
@@ -168,13 +169,15 @@ def add_at_most(c,lits,k):
         c.clause(-lits[i],-s[i-1][k-1])
     c.clause(-lits[-1],-s[-1][k-1])
 
-def build(start_round,limit,transition_limits=None):
+def build(start_round,limit,transition_limits=None,total_weight_limit=TOTAL_WEIGHT_LIMIT):
     if limit < 0:
         raise ValueError("limit must be non-negative")
     if transition_limits is None:
         transition_limits = list(TRANSITION_WEIGHT_LIMITS)
     if len(transition_limits) != 3 or any(value < 0 for value in transition_limits):
         raise ValueError("transition_limits must contain three non-negative values")
+    if total_weight_limit < 0:
+        raise ValueError("total_weight_limit must be non-negative")
     c=Cnf(); rows=linear_rows(); ddt=ddt_table()
     q=[c.var() for _ in range(21)]; exactly_one(c,q)
     if start_round is not None: c.clause(q[start_round])
@@ -185,8 +188,9 @@ def build(start_round,limit,transition_limits=None):
             'linear_z_modulus':32,
             'iota_encoding':'rc_low32_xor_high32',
               'cp_kernel_states':['c1','c2'],
-              'weight_limit_scope':'per_transition',
+              'weight_limit_scope':'per_transition_and_total',
               'transition_weight_limits':list(transition_limits),
+              'total_weight_limit':total_weight_limit,
               'iota_rc_start':IOTA_RC_START,
           'iota_start_round':start_round,'transition_count':3,
           'weight_definition':'-log2(DDT/32); DDT 32,16,8,4,2 => weight 0,1,2,3,4',
@@ -197,6 +201,7 @@ def build(start_round,limit,transition_limits=None):
           'path_a_bits': {},
           'path_c_bits': {},
           'path_state_bits':{f'b{r}':b[r] for r in range(4)}}
+    total_terms = []
     for r in range(3):
         a=[c.var() for _ in range(800)]
         meta['path_a_bits'][f'a{r}'] = a
@@ -212,20 +217,23 @@ def build(start_round,limit,transition_limits=None):
         terms=[]
         for box in meta['round_transition_weights'][r]['boxes']:
             w0,w1,w2=box['weight_bits']; terms += [w2]*4+[w1]*2+[w0]
+        total_terms.extend(terms)
         add_at_most(c,terms,transition_limits[r])
+    add_at_most(c,total_terms,total_weight_limit)
     meta['max_transition_weight']=max(transition_limits)
     return c,meta
 
 def main():
     p=argparse.ArgumentParser(); p.add_argument('--out',required=True)
     p.add_argument('--weights',required=True); p.add_argument('--limit',type=int,default=30)
-    p.add_argument('--transition-limits',default='20,20,20')
+    p.add_argument('--transition-limits',default='25,20,20')
+    p.add_argument('--total-weight-limit',type=int,default=TOTAL_WEIGHT_LIMIT)
     p.add_argument('--start-round',type=int,choices=range(21),default=None)
     a=p.parse_args()
     limits=[int(value) for value in a.transition_limits.split(',')]
-    c,m=build(a.start_round,a.limit,limits); c.write(a.out)
+    c,m=build(a.start_round,a.limit,limits,a.total_weight_limit); c.write(a.out)
     Path(a.weights).write_text(json.dumps(m,indent=2)+'\n',encoding='utf-8')
     print(f'Wrote {a.out}: {c.nvars} variables, {len(c.clauses)} clauses')
-    print(f'Wrote {a.weights}; transition limits = {limits}')
+    print(f'Wrote {a.weights}; transition limits = {limits}; total weight <= {a.total_weight_limit}')
 
 if __name__=='__main__': main()

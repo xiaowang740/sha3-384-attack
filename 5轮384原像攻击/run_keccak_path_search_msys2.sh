@@ -6,7 +6,8 @@ cd "$SCRIPT_DIR"
 
 # Override these variables on the command line when needed.
 MAX_WEIGHT="${MAX_WEIGHT:-30}"
-TRANSITION_LIMITS="${TRANSITION_LIMITS:-20,20,20}"
+TRANSITION_LIMITS="${TRANSITION_LIMITS:-25,20,20}"
+TOTAL_WEIGHT_LIMIT="${TOTAL_WEIGHT_LIMIT:-65}"
 COUNT="${COUNT:-10}"
 START_ROUND="${START_ROUND:-0}"
 OUTPUT_DIR="${OUTPUT_DIR:-keccak_path_results_msys2}"
@@ -57,6 +58,7 @@ GENERATOR_ARGS=(
     --weights "$WEIGHTS"
     --limit "$MAX_WEIGHT"
     --transition-limits "$TRANSITION_LIMITS"
+    --total-weight-limit "$TOTAL_WEIGHT_LIMIT"
 )
 if (( START_ROUND >= 0 )); then
     GENERATOR_ARGS+=(--start-round "$START_ROUND")
@@ -75,6 +77,6 @@ echo "Running SAT search..."
     --weights "$WEIGHTS" \
     --outdir "$OUTPUT_DIR" \
     --count "$COUNT" \
-    --max-transition-weight "$MAX_WEIGHT"
+    --max-total-weight "$TOTAL_WEIGHT_LIMIT"
 
 echo "Output: $OUTPUT_DIR"

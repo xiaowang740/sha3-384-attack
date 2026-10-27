@@ -8,12 +8,13 @@
     "c1",
     "c2"
   ],
-  "weight_limit_scope": "per_transition",
+  "weight_limit_scope": "per_transition_and_total",
   "transition_weight_limits": [
     25,
     20,
     20
   ],
+  "total_weight_limit": 65,
   "iota_rc_start": 1,
   "iota_start_round": 0,
   "transition_count": 3,

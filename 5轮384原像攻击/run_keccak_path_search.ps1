@@ -3,7 +3,8 @@ param(
     [string]$Cnf = "",
     [string]$Weights = "",
     [string]$OutputDir = "keccak_path_results",
-    [string]$TransitionLimits = "20,20,20",
+    [string]$TransitionLimits = "25,20,20",
+    [int]$TotalWeightLimit = 65,
     [int]$Count = 10,
     [int]$StartRound = 0,
     [switch]$GenerateDdtCnf
@@ -50,8 +51,9 @@ if (-not $needsDdtBuild) {
             $metadata.linear_z_modulus -ne 32 -or
             $metadata.iota_encoding -ne "rc_low32_xor_high32" -or
             (@($metadata.cp_kernel_states) -join ",") -ne "c1,c2" -or
-            $metadata.weight_limit_scope -ne "per_transition" -or
+            $metadata.weight_limit_scope -ne "per_transition_and_total" -or
             ((@($metadata.transition_weight_limits) -join ",") -ne $TransitionLimits) -or
+            $metadata.total_weight_limit -ne $TotalWeightLimit -or
             $metadata.iota_rc_start -ne 1 -or
             $metadata.iota_start_round -ne $(if ($StartRound -ge 0) { $StartRound } else { $null })) {
             $needsDdtBuild = $true
@@ -61,7 +63,7 @@ if (-not $needsDdtBuild) {
 if ($needsDdtBuild) {
     $generatorArgs = @((Join-Path $codeDir "keccak_ddt_path_sat.py"),
         "--out", $cnfPath, "--weights", $weightsPath, "--limit", "30",
-        "--transition-limits", $TransitionLimits)
+        "--transition-limits", $TransitionLimits, "--total-weight-limit", "$TotalWeightLimit")
     if ($StartRound -ge 0) { $generatorArgs += @("--start-round", "$StartRound") }
     & $python @generatorArgs
     if ($LASTEXITCODE -ne 0) { throw "DDT CNF generation failed with exit code $LASTEXITCODE" }
@@ -75,7 +77,7 @@ Write-Host "running SAT search..."
 
 & $python (Join-Path $codeDir "enumerate_keccak_paths.py") `
     --solver $Solver --cnf $cnfPath --weights $weightsPath `
-    --outdir $outputPath --count $Count --max-transition-weight 30
+    --outdir $outputPath --count $Count --max-total-weight $TotalWeightLimit
 if ($LASTEXITCODE -ne 0) {
     throw "Path enumeration failed with exit code $LASTEXITCODE"
 }
