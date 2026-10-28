@@ -35,7 +35,7 @@ def ddt_table():
 
 
 def add_input_weight_lookup(c, a_bits, ddt, transition, meta):
-    """Encode the DDT weight from each 5-bit input; do not create Chi outputs."""
+    """Encode DDT weight thresholds from alpha; do not create Chi outputs."""
     row_weights = {}
     for alpha, row in enumerate(ddt):
         weights = {6 - count.bit_length() for count in row if count}
@@ -50,23 +50,27 @@ def add_input_weight_lookup(c, a_bits, ddt, transition, meta):
     for y in range(5):
         for z in range(32):
             inputs = [a_bits[ri(x + 5 * y, z)] for x in range(5)]
-            w0, w1, w2 = [c.var() for _ in range(3)]
+            thresholds = [c.var() for _ in range(4)]
             meta["round_transition_weights"][transition]["boxes"].append(
-                {"y": y, "z": z, "weight_bits": [w0, w1, w2]}
+                {
+                    "y": y,
+                    "z": z,
+                    "weight_bits": thresholds,
+                    "weight_encoding": "unary_threshold",
+                }
             )
             for alpha, weight in row_weights.items():
                 condition = [
                     -variable if (alpha >> bit) & 1 else variable
                     for bit, variable in enumerate(inputs)
                 ]
-                bits = ((weight >> 2) & 1, (weight >> 1) & 1, weight & 1)
-                for variable, bit in zip((w2, w1, w0), bits):
-                    c.clause(*condition, variable if bit else -variable)
-
-            c.clause(w2, w1, -w0)
-            c.clause(-w2, w1, -w0)
-            c.clause(-w2, -w1, w0)
-            c.clause(-w2, -w1, -w0)
+                for threshold, variable in enumerate(thresholds, 1):
+                    c.clause(
+                        *condition,
+                        variable if weight >= threshold else -variable,
+                    )
+            for index in range(1, 4):
+                c.clause(-thresholds[index], thresholds[index - 1])
 
 
 def build(start_round, limit, transition_limits=None, total_weight_limit=TOTAL_WEIGHT_LIMIT):
@@ -105,6 +109,7 @@ def build(start_round, limit, transition_limits=None, total_weight_limit=TOTAL_W
         "explicit_final_state": "a2",
         "omitted_states": ["b3", "c3", "a3"],
         "transition_2_weight_source": "a2_input_ddt_row",
+        "transition_2_weight_encoding": "unary_threshold",
         "weight_definition": "-log2(DDT/32); DDT 32,16,8,4,2 => weight 0,1,2,3,4",
         "weight_encoding": {
             "bits_lsb_first": ["w0", "w1", "w2"],
@@ -147,8 +152,12 @@ def build(start_round, limit, transition_limits=None, total_weight_limit=TOTAL_W
 
         terms = []
         for box in meta["round_transition_weights"][r]["boxes"]:
-            w0, w1, w2 = box["weight_bits"]
-            terms += [w2] * 4 + [w1] * 2 + [w0]
+            weight_bits = box["weight_bits"]
+            if box.get("weight_encoding") == "unary_threshold":
+                terms.extend(weight_bits)
+            else:
+                w0, w1, w2 = weight_bits
+                terms += [w2] * 4 + [w1] * 2 + [w0]
         total_terms.extend(terms)
         add_at_most(c, terms, transition_limits[r])
 

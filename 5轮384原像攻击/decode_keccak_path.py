@@ -38,7 +38,13 @@ def decode_weights(data, model):
     for item in data["round_transition_weights"]:
         boxes = []
         for box in item["boxes"]:
-            value = bits_to_int(box["weight_bits"], model)
+            if box.get("weight_encoding") == "unary_threshold":
+                value = sum(
+                    model.get(variable, False)
+                    for variable in box["weight_bits"]
+                )
+            else:
+                value = bits_to_int(box["weight_bits"], model)
             boxes.append({"y": box["y"], "z": box["z"], "weight": value})
             total += value
         result.append({"transition": item["transition"],

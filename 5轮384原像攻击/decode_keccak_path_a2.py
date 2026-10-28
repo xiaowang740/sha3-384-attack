@@ -40,6 +40,13 @@ def format_lane_report(path):
     return "\n".join(lines) + "\n"
 
 
+def decode_box_weight(box, model):
+    variables = box["weight_bits"]
+    if box.get("weight_encoding") == "unary_threshold":
+        return sum(model.get(variable, False) for variable in variables)
+    return bits_to_int(variables, model)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("model", type=Path)

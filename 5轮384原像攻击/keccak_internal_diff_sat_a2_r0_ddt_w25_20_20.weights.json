@@ -25,6 +25,7 @@
     "a3"
   ],
   "transition_2_weight_source": "a2_input_ddt_row",
+  "transition_2_weight_encoding": "unary_threshold",
   "weight_definition": "-log2(DDT/32); DDT 32,16,8,4,2 => weight 0,1,2,3,4",
   "weight_encoding": {
     "bits_lsb_first": [
@@ -2944,1439 +2945,1759 @@
           "weight_bits": [
             87337,
             87338,
-            87339
-          ]
+            87339,
+            87340
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
           "z": 1,
           "weight_bits": [
-            87340,
             87341,
-            87342
-          ]
+            87342,
+            87343,
+            87344
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
           "z": 2,
           "weight_bits": [
-            87343,
-            87344,
-            87345
-          ]
-        },
-        {
-          "y": 0,
-          "z": 3,
-          "weight_bits": [
+            87345,
             87346,
             87347,
             87348
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
-          "z": 4,
+          "z": 3,
           "weight_bits": [
             87349,
             87350,
-            87351
-          ]
+            87351,
+            87352
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 0,
+          "z": 4,
+          "weight_bits": [
+            87353,
+            87354,
+            87355,
+            87356
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
           "z": 5,
           "weight_bits": [
-            87352,
-            87353,
-            87354
-          ]
-        },
-        {
-          "y": 0,
-          "z": 6,
-          "weight_bits": [
-            87355,
-            87356,
-            87357
-          ]
-        },
-        {
-          "y": 0,
-          "z": 7,
-          "weight_bits": [
+            87357,
             87358,
             87359,
             87360
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
-          "z": 8,
+          "z": 6,
           "weight_bits": [
             87361,
             87362,
-            87363
-          ]
+            87363,
+            87364
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
-          "z": 9,
+          "z": 7,
           "weight_bits": [
-            87364,
             87365,
-            87366
-          ]
-        },
-        {
-          "y": 0,
-          "z": 10,
-          "weight_bits": [
+            87366,
             87367,
-            87368,
-            87369
-          ]
+            87368
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
-          "z": 11,
+          "z": 8,
           "weight_bits": [
+            87369,
             87370,
             87371,
             87372
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
-          "z": 12,
+          "z": 9,
           "weight_bits": [
             87373,
             87374,
-            87375
-          ]
+            87375,
+            87376
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
-          "z": 13,
+          "z": 10,
           "weight_bits": [
-            87376,
             87377,
-            87378
-          ]
-        },
-        {
-          "y": 0,
-          "z": 14,
-          "weight_bits": [
+            87378,
             87379,
-            87380,
-            87381
-          ]
+            87380
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
-          "z": 15,
+          "z": 11,
           "weight_bits": [
+            87381,
             87382,
             87383,
             87384
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
-          "z": 16,
+          "z": 12,
           "weight_bits": [
             87385,
             87386,
-            87387
-          ]
+            87387,
+            87388
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
-          "z": 17,
+          "z": 13,
           "weight_bits": [
-            87388,
             87389,
-            87390
-          ]
-        },
-        {
-          "y": 0,
-          "z": 18,
-          "weight_bits": [
+            87390,
             87391,
-            87392,
-            87393
-          ]
+            87392
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
-          "z": 19,
+          "z": 14,
           "weight_bits": [
+            87393,
             87394,
             87395,
             87396
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
-          "z": 20,
+          "z": 15,
           "weight_bits": [
             87397,
             87398,
-            87399
-          ]
+            87399,
+            87400
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
-          "z": 21,
+          "z": 16,
           "weight_bits": [
-            87400,
             87401,
-            87402
-          ]
-        },
-        {
-          "y": 0,
-          "z": 22,
-          "weight_bits": [
+            87402,
             87403,
-            87404,
-            87405
-          ]
+            87404
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
-          "z": 23,
+          "z": 17,
           "weight_bits": [
+            87405,
             87406,
             87407,
             87408
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
-          "z": 24,
+          "z": 18,
           "weight_bits": [
             87409,
             87410,
-            87411
-          ]
+            87411,
+            87412
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
-          "z": 25,
+          "z": 19,
           "weight_bits": [
-            87412,
             87413,
-            87414
-          ]
-        },
-        {
-          "y": 0,
-          "z": 26,
-          "weight_bits": [
+            87414,
             87415,
-            87416,
-            87417
-          ]
+            87416
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
-          "z": 27,
+          "z": 20,
           "weight_bits": [
+            87417,
             87418,
             87419,
             87420
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
-          "z": 28,
+          "z": 21,
           "weight_bits": [
             87421,
             87422,
-            87423
-          ]
+            87423,
+            87424
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
-          "z": 29,
+          "z": 22,
           "weight_bits": [
-            87424,
             87425,
-            87426
-          ]
-        },
-        {
-          "y": 0,
-          "z": 30,
-          "weight_bits": [
+            87426,
             87427,
-            87428,
-            87429
-          ]
+            87428
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 0,
-          "z": 31,
+          "z": 23,
           "weight_bits": [
+            87429,
             87430,
             87431,
             87432
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 1,
-          "z": 0,
+          "y": 0,
+          "z": 24,
           "weight_bits": [
             87433,
             87434,
-            87435
-          ]
+            87435,
+            87436
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 1,
-          "z": 1,
+          "y": 0,
+          "z": 25,
           "weight_bits": [
-            87436,
             87437,
-            87438
-          ]
-        },
-        {
-          "y": 1,
-          "z": 2,
-          "weight_bits": [
+            87438,
             87439,
-            87440,
-            87441
-          ]
+            87440
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 1,
-          "z": 3,
+          "y": 0,
+          "z": 26,
           "weight_bits": [
+            87441,
             87442,
             87443,
             87444
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 1,
-          "z": 4,
+          "y": 0,
+          "z": 27,
           "weight_bits": [
             87445,
             87446,
-            87447
-          ]
+            87447,
+            87448
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 1,
-          "z": 5,
+          "y": 0,
+          "z": 28,
           "weight_bits": [
-            87448,
             87449,
-            87450
-          ]
-        },
-        {
-          "y": 1,
-          "z": 6,
-          "weight_bits": [
+            87450,
             87451,
-            87452,
-            87453
-          ]
+            87452
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 1,
-          "z": 7,
+          "y": 0,
+          "z": 29,
           "weight_bits": [
+            87453,
             87454,
             87455,
             87456
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 1,
-          "z": 8,
+          "y": 0,
+          "z": 30,
           "weight_bits": [
             87457,
             87458,
-            87459
-          ]
+            87459,
+            87460
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 1,
-          "z": 9,
+          "y": 0,
+          "z": 31,
           "weight_bits": [
-            87460,
             87461,
-            87462
-          ]
-        },
-        {
-          "y": 1,
-          "z": 10,
-          "weight_bits": [
+            87462,
             87463,
-            87464,
-            87465
-          ]
+            87464
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 1,
-          "z": 11,
+          "z": 0,
           "weight_bits": [
+            87465,
             87466,
             87467,
             87468
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 1,
-          "z": 12,
+          "z": 1,
           "weight_bits": [
             87469,
             87470,
-            87471
-          ]
+            87471,
+            87472
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 1,
-          "z": 13,
+          "z": 2,
           "weight_bits": [
-            87472,
             87473,
-            87474
-          ]
-        },
-        {
-          "y": 1,
-          "z": 14,
-          "weight_bits": [
+            87474,
             87475,
-            87476,
-            87477
-          ]
+            87476
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 1,
-          "z": 15,
+          "z": 3,
           "weight_bits": [
+            87477,
             87478,
             87479,
             87480
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 1,
-          "z": 16,
+          "z": 4,
           "weight_bits": [
             87481,
             87482,
-            87483
-          ]
+            87483,
+            87484
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 1,
-          "z": 17,
+          "z": 5,
           "weight_bits": [
-            87484,
             87485,
-            87486
-          ]
-        },
-        {
-          "y": 1,
-          "z": 18,
-          "weight_bits": [
+            87486,
             87487,
-            87488,
-            87489
-          ]
+            87488
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 1,
-          "z": 19,
+          "z": 6,
           "weight_bits": [
+            87489,
             87490,
             87491,
             87492
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 1,
-          "z": 20,
+          "z": 7,
           "weight_bits": [
             87493,
             87494,
-            87495
-          ]
+            87495,
+            87496
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 1,
-          "z": 21,
+          "z": 8,
           "weight_bits": [
-            87496,
             87497,
-            87498
-          ]
-        },
-        {
-          "y": 1,
-          "z": 22,
-          "weight_bits": [
+            87498,
             87499,
-            87500,
-            87501
-          ]
+            87500
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 1,
-          "z": 23,
+          "z": 9,
           "weight_bits": [
+            87501,
             87502,
             87503,
             87504
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 1,
-          "z": 24,
+          "z": 10,
           "weight_bits": [
             87505,
             87506,
-            87507
-          ]
+            87507,
+            87508
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 1,
-          "z": 25,
+          "z": 11,
           "weight_bits": [
-            87508,
             87509,
-            87510
-          ]
-        },
-        {
-          "y": 1,
-          "z": 26,
-          "weight_bits": [
+            87510,
             87511,
-            87512,
-            87513
-          ]
+            87512
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 1,
-          "z": 27,
+          "z": 12,
           "weight_bits": [
+            87513,
             87514,
             87515,
             87516
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 1,
-          "z": 28,
+          "z": 13,
           "weight_bits": [
             87517,
             87518,
-            87519
-          ]
+            87519,
+            87520
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 1,
-          "z": 29,
+          "z": 14,
           "weight_bits": [
-            87520,
             87521,
-            87522
-          ]
-        },
-        {
-          "y": 1,
-          "z": 30,
-          "weight_bits": [
+            87522,
             87523,
-            87524,
-            87525
-          ]
+            87524
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 1,
-          "z": 31,
+          "z": 15,
           "weight_bits": [
+            87525,
             87526,
             87527,
             87528
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 2,
-          "z": 0,
+          "y": 1,
+          "z": 16,
           "weight_bits": [
             87529,
             87530,
-            87531
-          ]
+            87531,
+            87532
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 2,
-          "z": 1,
+          "y": 1,
+          "z": 17,
           "weight_bits": [
-            87532,
             87533,
-            87534
-          ]
-        },
-        {
-          "y": 2,
-          "z": 2,
-          "weight_bits": [
+            87534,
             87535,
-            87536,
-            87537
-          ]
+            87536
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 2,
-          "z": 3,
+          "y": 1,
+          "z": 18,
           "weight_bits": [
+            87537,
             87538,
             87539,
             87540
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 2,
-          "z": 4,
+          "y": 1,
+          "z": 19,
           "weight_bits": [
             87541,
             87542,
-            87543
-          ]
+            87543,
+            87544
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 2,
-          "z": 5,
+          "y": 1,
+          "z": 20,
           "weight_bits": [
-            87544,
             87545,
-            87546
-          ]
-        },
-        {
-          "y": 2,
-          "z": 6,
-          "weight_bits": [
+            87546,
             87547,
-            87548,
-            87549
-          ]
+            87548
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 2,
-          "z": 7,
+          "y": 1,
+          "z": 21,
           "weight_bits": [
+            87549,
             87550,
             87551,
             87552
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 2,
-          "z": 8,
+          "y": 1,
+          "z": 22,
           "weight_bits": [
             87553,
             87554,
-            87555
-          ]
+            87555,
+            87556
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 2,
-          "z": 9,
+          "y": 1,
+          "z": 23,
           "weight_bits": [
-            87556,
             87557,
-            87558
-          ]
-        },
-        {
-          "y": 2,
-          "z": 10,
-          "weight_bits": [
+            87558,
             87559,
-            87560,
-            87561
-          ]
+            87560
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 2,
-          "z": 11,
+          "y": 1,
+          "z": 24,
           "weight_bits": [
+            87561,
             87562,
             87563,
             87564
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 2,
-          "z": 12,
+          "y": 1,
+          "z": 25,
           "weight_bits": [
             87565,
             87566,
-            87567
-          ]
+            87567,
+            87568
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 2,
-          "z": 13,
+          "y": 1,
+          "z": 26,
           "weight_bits": [
-            87568,
             87569,
-            87570
-          ]
-        },
-        {
-          "y": 2,
-          "z": 14,
-          "weight_bits": [
+            87570,
             87571,
-            87572,
-            87573
-          ]
+            87572
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 2,
-          "z": 15,
+          "y": 1,
+          "z": 27,
           "weight_bits": [
+            87573,
             87574,
             87575,
             87576
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 2,
-          "z": 16,
+          "y": 1,
+          "z": 28,
           "weight_bits": [
             87577,
             87578,
-            87579
-          ]
+            87579,
+            87580
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 2,
-          "z": 17,
+          "y": 1,
+          "z": 29,
           "weight_bits": [
-            87580,
             87581,
-            87582
-          ]
-        },
-        {
-          "y": 2,
-          "z": 18,
-          "weight_bits": [
+            87582,
             87583,
-            87584,
-            87585
-          ]
+            87584
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 2,
-          "z": 19,
+          "y": 1,
+          "z": 30,
           "weight_bits": [
+            87585,
             87586,
             87587,
             87588
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 2,
-          "z": 20,
+          "y": 1,
+          "z": 31,
           "weight_bits": [
             87589,
             87590,
-            87591
-          ]
+            87591,
+            87592
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 2,
-          "z": 21,
+          "z": 0,
           "weight_bits": [
-            87592,
             87593,
-            87594
-          ]
-        },
-        {
-          "y": 2,
-          "z": 22,
-          "weight_bits": [
+            87594,
             87595,
-            87596,
-            87597
-          ]
+            87596
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 2,
-          "z": 23,
+          "z": 1,
           "weight_bits": [
+            87597,
             87598,
             87599,
             87600
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 2,
-          "z": 24,
+          "z": 2,
           "weight_bits": [
             87601,
             87602,
-            87603
-          ]
+            87603,
+            87604
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 2,
-          "z": 25,
+          "z": 3,
           "weight_bits": [
-            87604,
             87605,
-            87606
-          ]
-        },
-        {
-          "y": 2,
-          "z": 26,
-          "weight_bits": [
+            87606,
             87607,
-            87608,
-            87609
-          ]
+            87608
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 2,
-          "z": 27,
+          "z": 4,
           "weight_bits": [
+            87609,
             87610,
             87611,
             87612
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 2,
-          "z": 28,
+          "z": 5,
           "weight_bits": [
             87613,
             87614,
-            87615
-          ]
+            87615,
+            87616
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 2,
-          "z": 29,
+          "z": 6,
           "weight_bits": [
-            87616,
             87617,
-            87618
-          ]
-        },
-        {
-          "y": 2,
-          "z": 30,
-          "weight_bits": [
+            87618,
             87619,
-            87620,
-            87621
-          ]
+            87620
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 2,
-          "z": 31,
+          "z": 7,
           "weight_bits": [
+            87621,
             87622,
             87623,
             87624
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 0,
+          "y": 2,
+          "z": 8,
           "weight_bits": [
             87625,
             87626,
-            87627
-          ]
+            87627,
+            87628
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 1,
+          "y": 2,
+          "z": 9,
           "weight_bits": [
-            87628,
             87629,
-            87630
-          ]
-        },
-        {
-          "y": 3,
-          "z": 2,
-          "weight_bits": [
+            87630,
             87631,
-            87632,
-            87633
-          ]
+            87632
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 3,
+          "y": 2,
+          "z": 10,
           "weight_bits": [
+            87633,
             87634,
             87635,
             87636
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 4,
+          "y": 2,
+          "z": 11,
           "weight_bits": [
             87637,
             87638,
-            87639
-          ]
+            87639,
+            87640
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 5,
+          "y": 2,
+          "z": 12,
           "weight_bits": [
-            87640,
             87641,
-            87642
-          ]
-        },
-        {
-          "y": 3,
-          "z": 6,
-          "weight_bits": [
+            87642,
             87643,
-            87644,
-            87645
-          ]
+            87644
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 7,
+          "y": 2,
+          "z": 13,
           "weight_bits": [
+            87645,
             87646,
             87647,
             87648
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 8,
+          "y": 2,
+          "z": 14,
           "weight_bits": [
             87649,
             87650,
-            87651
-          ]
+            87651,
+            87652
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 9,
+          "y": 2,
+          "z": 15,
           "weight_bits": [
-            87652,
             87653,
-            87654
-          ]
-        },
-        {
-          "y": 3,
-          "z": 10,
-          "weight_bits": [
+            87654,
             87655,
-            87656,
-            87657
-          ]
+            87656
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 11,
+          "y": 2,
+          "z": 16,
           "weight_bits": [
+            87657,
             87658,
             87659,
             87660
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 12,
+          "y": 2,
+          "z": 17,
           "weight_bits": [
             87661,
             87662,
-            87663
-          ]
+            87663,
+            87664
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 13,
+          "y": 2,
+          "z": 18,
           "weight_bits": [
-            87664,
             87665,
-            87666
-          ]
-        },
-        {
-          "y": 3,
-          "z": 14,
-          "weight_bits": [
+            87666,
             87667,
-            87668,
-            87669
-          ]
+            87668
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 15,
+          "y": 2,
+          "z": 19,
           "weight_bits": [
+            87669,
             87670,
             87671,
             87672
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 16,
+          "y": 2,
+          "z": 20,
           "weight_bits": [
             87673,
             87674,
-            87675
-          ]
+            87675,
+            87676
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 17,
+          "y": 2,
+          "z": 21,
           "weight_bits": [
-            87676,
             87677,
-            87678
-          ]
-        },
-        {
-          "y": 3,
-          "z": 18,
-          "weight_bits": [
+            87678,
             87679,
-            87680,
-            87681
-          ]
+            87680
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 19,
+          "y": 2,
+          "z": 22,
           "weight_bits": [
+            87681,
             87682,
             87683,
             87684
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 20,
+          "y": 2,
+          "z": 23,
           "weight_bits": [
             87685,
             87686,
-            87687
-          ]
+            87687,
+            87688
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 21,
+          "y": 2,
+          "z": 24,
           "weight_bits": [
-            87688,
             87689,
-            87690
-          ]
-        },
-        {
-          "y": 3,
-          "z": 22,
-          "weight_bits": [
+            87690,
             87691,
-            87692,
-            87693
-          ]
+            87692
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 23,
+          "y": 2,
+          "z": 25,
           "weight_bits": [
+            87693,
             87694,
             87695,
             87696
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 24,
+          "y": 2,
+          "z": 26,
           "weight_bits": [
             87697,
             87698,
-            87699
-          ]
+            87699,
+            87700
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 25,
-          "weight_bits": [
-            87700,
-            87701,
-            87702
-          ]
-        },
-        {
-          "y": 3,
-          "z": 26,
-          "weight_bits": [
-            87703,
-            87704,
-            87705
-          ]
-        },
-        {
-          "y": 3,
+          "y": 2,
           "z": 27,
           "weight_bits": [
+            87701,
+            87702,
+            87703,
+            87704
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 2,
+          "z": 28,
+          "weight_bits": [
+            87705,
             87706,
             87707,
             87708
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 28,
+          "y": 2,
+          "z": 29,
           "weight_bits": [
             87709,
             87710,
-            87711
-          ]
+            87711,
+            87712
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
-          "z": 29,
-          "weight_bits": [
-            87712,
-            87713,
-            87714
-          ]
-        },
-        {
-          "y": 3,
+          "y": 2,
           "z": 30,
           "weight_bits": [
+            87713,
+            87714,
             87715,
-            87716,
-            87717
-          ]
+            87716
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 3,
+          "y": 2,
           "z": 31,
           "weight_bits": [
+            87717,
             87718,
             87719,
             87720
-          ]
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
-          "y": 4,
+          "y": 3,
           "z": 0,
           "weight_bits": [
             87721,
             87722,
-            87723
-          ]
+            87723,
+            87724
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 1,
+          "weight_bits": [
+            87725,
+            87726,
+            87727,
+            87728
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 2,
+          "weight_bits": [
+            87729,
+            87730,
+            87731,
+            87732
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 3,
+          "weight_bits": [
+            87733,
+            87734,
+            87735,
+            87736
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 4,
+          "weight_bits": [
+            87737,
+            87738,
+            87739,
+            87740
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 5,
+          "weight_bits": [
+            87741,
+            87742,
+            87743,
+            87744
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 6,
+          "weight_bits": [
+            87745,
+            87746,
+            87747,
+            87748
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 7,
+          "weight_bits": [
+            87749,
+            87750,
+            87751,
+            87752
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 8,
+          "weight_bits": [
+            87753,
+            87754,
+            87755,
+            87756
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 9,
+          "weight_bits": [
+            87757,
+            87758,
+            87759,
+            87760
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 10,
+          "weight_bits": [
+            87761,
+            87762,
+            87763,
+            87764
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 11,
+          "weight_bits": [
+            87765,
+            87766,
+            87767,
+            87768
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 12,
+          "weight_bits": [
+            87769,
+            87770,
+            87771,
+            87772
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 13,
+          "weight_bits": [
+            87773,
+            87774,
+            87775,
+            87776
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 14,
+          "weight_bits": [
+            87777,
+            87778,
+            87779,
+            87780
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 15,
+          "weight_bits": [
+            87781,
+            87782,
+            87783,
+            87784
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 16,
+          "weight_bits": [
+            87785,
+            87786,
+            87787,
+            87788
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 17,
+          "weight_bits": [
+            87789,
+            87790,
+            87791,
+            87792
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 18,
+          "weight_bits": [
+            87793,
+            87794,
+            87795,
+            87796
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 19,
+          "weight_bits": [
+            87797,
+            87798,
+            87799,
+            87800
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 20,
+          "weight_bits": [
+            87801,
+            87802,
+            87803,
+            87804
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 21,
+          "weight_bits": [
+            87805,
+            87806,
+            87807,
+            87808
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 22,
+          "weight_bits": [
+            87809,
+            87810,
+            87811,
+            87812
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 23,
+          "weight_bits": [
+            87813,
+            87814,
+            87815,
+            87816
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 24,
+          "weight_bits": [
+            87817,
+            87818,
+            87819,
+            87820
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 25,
+          "weight_bits": [
+            87821,
+            87822,
+            87823,
+            87824
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 26,
+          "weight_bits": [
+            87825,
+            87826,
+            87827,
+            87828
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 27,
+          "weight_bits": [
+            87829,
+            87830,
+            87831,
+            87832
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 28,
+          "weight_bits": [
+            87833,
+            87834,
+            87835,
+            87836
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 29,
+          "weight_bits": [
+            87837,
+            87838,
+            87839,
+            87840
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 30,
+          "weight_bits": [
+            87841,
+            87842,
+            87843,
+            87844
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 3,
+          "z": 31,
+          "weight_bits": [
+            87845,
+            87846,
+            87847,
+            87848
+          ],
+          "weight_encoding": "unary_threshold"
+        },
+        {
+          "y": 4,
+          "z": 0,
+          "weight_bits": [
+            87849,
+            87850,
+            87851,
+            87852
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 1,
           "weight_bits": [
-            87724,
-            87725,
-            87726
-          ]
+            87853,
+            87854,
+            87855,
+            87856
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 2,
           "weight_bits": [
-            87727,
-            87728,
-            87729
-          ]
+            87857,
+            87858,
+            87859,
+            87860
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 3,
           "weight_bits": [
-            87730,
-            87731,
-            87732
-          ]
+            87861,
+            87862,
+            87863,
+            87864
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 4,
           "weight_bits": [
-            87733,
-            87734,
-            87735
-          ]
+            87865,
+            87866,
+            87867,
+            87868
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 5,
           "weight_bits": [
-            87736,
-            87737,
-            87738
-          ]
+            87869,
+            87870,
+            87871,
+            87872
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 6,
           "weight_bits": [
-            87739,
-            87740,
-            87741
-          ]
+            87873,
+            87874,
+            87875,
+            87876
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 7,
           "weight_bits": [
-            87742,
-            87743,
-            87744
-          ]
+            87877,
+            87878,
+            87879,
+            87880
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 8,
           "weight_bits": [
-            87745,
-            87746,
-            87747
-          ]
+            87881,
+            87882,
+            87883,
+            87884
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 9,
           "weight_bits": [
-            87748,
-            87749,
-            87750
-          ]
+            87885,
+            87886,
+            87887,
+            87888
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 10,
           "weight_bits": [
-            87751,
-            87752,
-            87753
-          ]
+            87889,
+            87890,
+            87891,
+            87892
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 11,
           "weight_bits": [
-            87754,
-            87755,
-            87756
-          ]
+            87893,
+            87894,
+            87895,
+            87896
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 12,
           "weight_bits": [
-            87757,
-            87758,
-            87759
-          ]
+            87897,
+            87898,
+            87899,
+            87900
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 13,
           "weight_bits": [
-            87760,
-            87761,
-            87762
-          ]
+            87901,
+            87902,
+            87903,
+            87904
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 14,
           "weight_bits": [
-            87763,
-            87764,
-            87765
-          ]
+            87905,
+            87906,
+            87907,
+            87908
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 15,
           "weight_bits": [
-            87766,
-            87767,
-            87768
-          ]
+            87909,
+            87910,
+            87911,
+            87912
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 16,
           "weight_bits": [
-            87769,
-            87770,
-            87771
-          ]
+            87913,
+            87914,
+            87915,
+            87916
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 17,
           "weight_bits": [
-            87772,
-            87773,
-            87774
-          ]
+            87917,
+            87918,
+            87919,
+            87920
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 18,
           "weight_bits": [
-            87775,
-            87776,
-            87777
-          ]
+            87921,
+            87922,
+            87923,
+            87924
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 19,
           "weight_bits": [
-            87778,
-            87779,
-            87780
-          ]
+            87925,
+            87926,
+            87927,
+            87928
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 20,
           "weight_bits": [
-            87781,
-            87782,
-            87783
-          ]
+            87929,
+            87930,
+            87931,
+            87932
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 21,
           "weight_bits": [
-            87784,
-            87785,
-            87786
-          ]
+            87933,
+            87934,
+            87935,
+            87936
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 22,
           "weight_bits": [
-            87787,
-            87788,
-            87789
-          ]
+            87937,
+            87938,
+            87939,
+            87940
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 23,
           "weight_bits": [
-            87790,
-            87791,
-            87792
-          ]
+            87941,
+            87942,
+            87943,
+            87944
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 24,
           "weight_bits": [
-            87793,
-            87794,
-            87795
-          ]
+            87945,
+            87946,
+            87947,
+            87948
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 25,
           "weight_bits": [
-            87796,
-            87797,
-            87798
-          ]
+            87949,
+            87950,
+            87951,
+            87952
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 26,
           "weight_bits": [
-            87799,
-            87800,
-            87801
-          ]
+            87953,
+            87954,
+            87955,
+            87956
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 27,
           "weight_bits": [
-            87802,
-            87803,
-            87804
-          ]
+            87957,
+            87958,
+            87959,
+            87960
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 28,
           "weight_bits": [
-            87805,
-            87806,
-            87807
-          ]
+            87961,
+            87962,
+            87963,
+            87964
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 29,
           "weight_bits": [
-            87808,
-            87809,
-            87810
-          ]
+            87965,
+            87966,
+            87967,
+            87968
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 30,
           "weight_bits": [
-            87811,
-            87812,
-            87813
-          ]
+            87969,
+            87970,
+            87971,
+            87972
+          ],
+          "weight_encoding": "unary_threshold"
         },
         {
           "y": 4,
           "z": 31,
           "weight_bits": [
-            87814,
-            87815,
-            87816
-          ]
+            87973,
+            87974,
+            87975,
+            87976
+          ],
+          "weight_encoding": "unary_threshold"
         }
       ]
     }
