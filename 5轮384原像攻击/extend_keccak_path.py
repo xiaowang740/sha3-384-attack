@@ -192,13 +192,34 @@ def extend_json(path, c3, a3, analysis):
 
 def process(lanes_path, json_path=None):
     states = parse_lane_report(lanes_path)
+    data = {}
+    if json_path and json_path.exists():
+        data = json.loads(json_path.read_text(encoding="ascii"))
+    start_round = data.get("iota_start_round")
+    if start_round is None:
+        candidates = [
+            candidate for candidate in range(len(RC32) - IOTA_RC_START - 2)
+            if all(
+                states[f"b{stage}"][0] ^ states[f"c{stage}"][0]
+                == RC32[IOTA_RC_START + candidate + stage]
+                for stage in range(3)
+            )
+        ]
+        if len(candidates) != 1:
+            raise ValueError("cannot determine a unique iota start round for extension")
+        start_round = candidates[0]
+    if not isinstance(start_round, int) or start_round < 0:
+        raise ValueError("invalid iota start round for extension")
+    round_index = IOTA_RC_START + start_round + 3
+    if round_index >= len(RC32):
+        raise ValueError("no round constant available for the b3 extension")
     c3 = list(states["b3"])
-    c3[0] ^= RC32[IOTA_RC_START + 3]
+    c3[0] ^= RC32[round_index]
     a3 = theta_rho_pi(c3)
     analysis = analyze_transition(a3, ddt_table())
     existing_total = 0
     if json_path and json_path.exists():
-        existing_total = json.loads(json_path.read_text(encoding="ascii")).get("total_weight", 0)
+        existing_total = data.get("total_weight", 0)
         extend_json(json_path, c3, a3, analysis)
     append_lane_extension(lanes_path, c3, a3, analysis, existing_total)
     return analysis, existing_total

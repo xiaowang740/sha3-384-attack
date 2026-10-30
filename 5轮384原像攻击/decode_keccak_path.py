@@ -3,6 +3,7 @@
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 
@@ -79,6 +80,8 @@ def main():
     parser.add_argument("--out", required=True)
     parser.add_argument("--max-transition-weight", type=int, default=None)
     parser.add_argument("--max-total-weight", type=int, default=None)
+    parser.add_argument("--no-extend", action="store_true",
+                        help="do not automatically extend b3 through c3 and a3")
     args = parser.parse_args()
 
     model = read_model(args.model)
@@ -128,8 +131,17 @@ def main():
     report = format_lane_report(path)
     lanes_out = Path(args.out).with_suffix(".lanes.txt")
     lanes_out.write_text(report, encoding="ascii")
+    if not args.no_extend and "b3" in path:
+        from extend_keccak_path import process
+
+        try:
+            process(lanes_out, Path(args.out))
+        except ValueError as error:
+            print(f"automatic extension skipped: {error}", file=sys.stderr)
+        else:
+            report = lanes_out.read_text(encoding="ascii")
     print(f"lane view: {lanes_out}")
-    print(report, end="")
+    print(report, end="", flush=True)
 
 
 if __name__ == "__main__":

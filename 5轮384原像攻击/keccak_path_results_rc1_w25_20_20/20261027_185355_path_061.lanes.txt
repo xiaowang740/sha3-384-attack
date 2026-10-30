@@ -75,3 +75,21 @@ transition 0 (b0 -> c0 -> a0 -> b1): weight=25, active_boxes=12
 transition 1 (b1 -> c1 -> a1 -> b2): weight=15, active_boxes=7
 transition 2 (b2 -> c2 -> a2 -> b3): weight=20, active_boxes=10
 total_weight: 60
+Keccak path extension: b3 -> c3 -> a3
+c3:
+|0000008b|00000000|00000000|00000000|00000000|
+|00000000|00000000|00008000|00000000|00000000|
+|00000000|00000020|00020020|00020000|00020000|
+|00000000|00090000|00020000|00000000|00000000|
+|00000000|00000008|00000100|00000300|00000200|
+a3:
+|001002db|102cb000|78304000|a4000090|80058000|
+|00004852|21600020|00801280|00596001|0001a0e5|
+|00020596|03618a00|40000d0a|02021600|09400040|
+|b0001010|01002500|040bac00|83140007|20000486|
+|0003418a|90000242|00010b00|2004a000|00040b0c|
+transition 3 (a3 -> b4, b4 not emitted): minimum_weight=244, maximum_weight=244, unique_output_boxes=58/160, unique_weight_boxes=160/160, ambiguous_output_boxes=102/160
+possible_transition_3_weights: [244]
+existing_total_weight: 60
+minimum_total_weight_with_transition_3: 304
+transition_3_weight_is_unique: True
