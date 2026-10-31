@@ -96,6 +96,15 @@ def main():
             if a.max_total_weight is not None:
                 decode_args += ['--max-total-weight', str(a.max_total_weight)]
             subprocess.run(decode_args, check=True)
+            # Extend each decoded path before adding it to the combined results.
+            subprocess.run(
+                [
+                    sys.executable,
+                    str(Path(__file__).with_name('extend_keccak_path.py')),
+                    str(pathout.with_suffix('.lanes.txt')),
+                ],
+                check=True,
+            )
             decoded=json.loads(pathout.read_text())
             with combined_path.open('a',encoding='utf-8') as stream:
                 stream.write(json.dumps({'index':output_idx,**decoded},ensure_ascii=False)+'\n')
