@@ -1,5 +1,6 @@
 import argparse, json, subprocess, tempfile, time, sys
 from pathlib import Path
+from incremental_sat_solver import IncrementalSatSolver
 
 
 def parse_model(text):
@@ -74,17 +75,13 @@ def main():
         if existing_count:
             print(f"Loaded {existing_count} existing paths; excluding them")
     found=0
-    with tempfile.TemporaryDirectory() as td:
-        cnf=Path(td)/'work.cnf'
+    solver = IncrementalSatSolver(a.solver, n, clauses)
+    try:
         for idx in range(1,a.count+1):
-            cnf.write_text('\n'.join([f'p cnf {n} {len(clauses)}']+clauses)+'\n')
-            r=subprocess.run([a.solver,str(cnf)],capture_output=True,text=True)
-            if r.returncode==20 or 's UNSATISFIABLE' in r.stdout or 's UNSATISFIABLE' in r.stderr: break
-            if r.returncode not in (0,10): raise SystemExit(r.stderr or r.stdout)
-            model=parse_model(r.stdout+r.stderr)
-            if not model: raise SystemExit('solver model not found')
+            satisfiable, model, solver_output = solver.solve()
+            if not satisfiable: break
             output_idx = existing_count + idx
-            modelpath=out/f'{tag}_model_{output_idx:03d}.txt'; modelpath.write_text(r.stdout+r.stderr)
+            modelpath=out/f'{tag}_model_{output_idx:03d}.txt'; modelpath.write_text(solver_output)
             path=data
             pathout=out/f'{tag}_path_{output_idx:03d}.json'
             decode_args = [
@@ -114,6 +111,8 @@ def main():
             for _, bits in pathvars:
                 for v in bits:
                     block.append(str(-v if model.get(v,False) else v))
-            clauses.append(' '.join(block)+' 0')
-        print(f'found {found} new paths; combined file: {combined_path}')
+            solver.add_clause([int(value) for value in block])
+    finally:
+        solver.close()
+    print(f'found {found} new paths; combined file: {combined_path}')
 if __name__=='__main__': main()

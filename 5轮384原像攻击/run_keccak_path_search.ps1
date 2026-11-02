@@ -40,6 +40,7 @@ if ([string]::IsNullOrWhiteSpace($Solver)) {
 
 $python = "C:\Users\Lenovo\.conda\envs\dpa37\python.exe"
 if (-not (Test-Path -LiteralPath $python)) { $python = "python" }
+$env:PYTHONPATH = Join-Path $codeDir ".sat-deps"
 $needsDdtBuild = $GenerateDdtCnf -or
     -not (Test-Path -LiteralPath $cnfPath) -or
     -not (Test-Path -LiteralPath $weightsPath)

@@ -10,6 +10,7 @@ import time
 from pathlib import Path
 
 from enumerate_keccak_paths import load_existing_paths, parse_model
+from incremental_sat_solver import IncrementalSatSolver
 
 
 def main():
@@ -47,30 +48,16 @@ def main():
             print(f"Loaded {existing_count} existing a2 paths; excluding them")
 
     found = 0
-    with tempfile.TemporaryDirectory() as temp_dir:
-        work_cnf = Path(temp_dir) / "work.cnf"
+    solver = IncrementalSatSolver(args.solver, variable_count, clauses)
+    try:
         for sequence in range(1, args.count + 1):
-            work_cnf.write_text(
-                "\n".join([f"p cnf {variable_count} {len(clauses)}"] + clauses) + "\n",
-                encoding="ascii",
-            )
             print(
                 f"Running SAT search... ({sequence}/{args.count})",
                 flush=True,
             )
-            result = subprocess.run(
-                [args.solver, str(work_cnf)],
-                capture_output=True,
-                text=True,
-            )
-            output = result.stdout + result.stderr
-            if result.returncode == 20 or "s UNSATISFIABLE" in output:
+            satisfiable, model, output = solver.solve()
+            if not satisfiable:
                 break
-            if result.returncode not in (0, 10):
-                raise SystemExit(output or f"solver exited with {result.returncode}")
-            model = parse_model(output)
-            if not model:
-                raise SystemExit("solver model not found")
 
             index = existing_count + sequence
             model_path = args.outdir / f"{tag}_model_{index:03d}.txt"
@@ -105,8 +92,10 @@ def main():
                     str(-variable if model.get(variable, False) else variable)
                     for variable in variables
                 )
-            clauses.append(" ".join(block) + " 0")
+            solver.add_clause([int(value) for value in block])
             found += 1
+    finally:
+        solver.close()
 
     print(f"found {found} new a2 paths; combined file: {combined}")
 

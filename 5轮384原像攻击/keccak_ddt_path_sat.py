@@ -122,6 +122,14 @@ def forbid_pair(c,ins,outs,a,b):
     c.clause(*lits)
 
 def add_ddt_chi_transition(c,a_bits,b_bits,ddt,transition,meta):
+    row_weights = []
+    for input_difference, row in enumerate(ddt):
+        counts = {count for count in row if count}
+        if not counts or any(count not in (2, 4, 8, 16, 32) for count in counts):
+            raise ValueError(f"DDT input {input_difference} has invalid nonzero counts")
+        if len(counts) != 1:
+            raise ValueError(f"DDT input {input_difference} has non-unique output weights")
+        row_weights.append(6 - next(iter(counts)).bit_length())
     # Each (y,z) is one independent 5-bit Chi box; its input/output
     # difference bits are the corresponding lane bits in a and b.
     for y in range(5):
@@ -131,20 +139,17 @@ def add_ddt_chi_transition(c,a_bits,b_bits,ddt,transition,meta):
             w0,w1,w2=[c.var() for _ in range(3)] # metadata is LSB-first
             meta['round_transition_weights'][transition]['boxes'].append(
                 {'y':y,'z':z,'weight_bits':[w0,w1,w2]})
-            # Allowed DDT entries: 32->0, 16->1, 8->2, 4->3, 2->4.
-            for av in range(32):
-                for bv in range(32):
-                    count=ddt[av][bv]
-                    if count==0:
-                        forbid_pair(c,ins,outs,av,bv)
-                    else:
-                        weight=6-count.bit_length() # log2(32/count), counts are powers of two
-                        # Condition (input=a AND output=b) implies exact code.
-                        cond=[]
-                        cond.extend((-ins[i] if (av>>i)&1 else ins[i]) for i in range(5))
-                        cond.extend((-outs[i] if (bv>>i)&1 else outs[i]) for i in range(5))
-                        bits=((weight>>2)&1,(weight>>1)&1,weight&1)
-                        for var,bit in zip((w2,w1,w0),bits): c.clause(*cond,(var if bit else -var))
+            for input_difference, weight in enumerate(row_weights):
+                for output_difference in range(32):
+                    if ddt[input_difference][output_difference] == 0:
+                        forbid_pair(c, ins, outs, input_difference, output_difference)
+                condition = [
+                    -variable if (input_difference >> bit_index) & 1 else variable
+                    for bit_index, variable in enumerate(ins)
+                ]
+                for bit_index, variable in enumerate((w0, w1, w2)):
+                    bit = (weight >> bit_index) & 1
+                    c.clause(*condition, variable if bit else -variable)
             # Exclude codes 5..7; every reachable DDT weight is 0..4.
             c.clause(w2,w1,-w0)    # forbid 001
             c.clause(-w2,w1,-w0)   # forbid 101
@@ -219,7 +224,8 @@ def build(start_round,limit,transition_limits=None,total_weight_limit=TOTAL_WEIG
             w0,w1,w2=box['weight_bits']; terms += [w2]*4+[w1]*2+[w0]
         total_terms.extend(terms)
         add_at_most(c,terms,transition_limits[r])
-    add_at_most(c,total_terms,total_weight_limit)
+    if total_weight_limit < sum(transition_limits):
+        add_at_most(c,total_terms,total_weight_limit)
     meta['max_transition_weight']=max(transition_limits)
     return c,meta
 

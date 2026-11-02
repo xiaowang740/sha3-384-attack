@@ -3,6 +3,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
+export PYTHONPATH="$SCRIPT_DIR/.sat-deps${PYTHONPATH:+:$PYTHONPATH}"
 
 # Override these variables on the command line when needed.
 MAX_WEIGHT="${MAX_WEIGHT:-30}"
